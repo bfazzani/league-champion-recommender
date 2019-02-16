@@ -17,7 +17,8 @@ public class ChampionList {
         try (Scanner in = new Scanner(new File(fileName))) {
             while (in.hasNext()) {
                 Champion c = new Champion(in.next().replaceAll("_", " "), in.nextInt(), in.nextDouble(), in.nextDouble(), in.nextDouble(),
-                        in.nextInt(), in.nextInt(), in.nextInt());
+                        in.nextInt(), in.nextInt(), in.nextDouble());
+                System.out.println(c);
                 champions.add(c);
             }
         } catch (Exception e) {

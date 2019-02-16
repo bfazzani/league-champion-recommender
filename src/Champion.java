@@ -7,9 +7,9 @@ public class Champion {
     private double assists;
     private int damageDealt;
     private int damageTaken;
-    private int creepScore;
+    private double creepScore;
 
-    public Champion(String name, int gold, double kills, double deaths, double assists, int damageDealt, int damageTaken, int creepScore) {
+    public Champion(String name, int gold, double kills, double deaths, double assists, int damageDealt, int damageTaken, double creepScore) {
         this.name = name;
         this.gold = gold;
         this.kills = kills;
