@@ -14,5 +14,9 @@ public class Main {
     public static void main(String[] args)
     {
         new Main();
+
+        ChampionList cList = new ChampionList("champData.txt");
+        cList.readData();
+        System.out.println(cList);
     }
 }

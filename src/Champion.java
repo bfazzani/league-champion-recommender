@@ -19,4 +19,9 @@ public class Champion {
         this.damageTaken = damageTaken;
         this.creepScore = creepScore;
     }
+
+    @Override
+    public String toString() {
+        return name + " " + kills + " " + deaths + " " + assists + " " + damageDealt + " " + damageTaken + " " + creepScore;
+    }
 }
