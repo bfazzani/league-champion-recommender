@@ -51,16 +51,13 @@ public class ChampionList {
 
     public void readData() {
         try (BufferedReader in = new BufferedReader(new FileReader(fileName))) {
-            while (true) {
+            String line;
+            while ((line = in.readLine()) != null) {
                 StringTokenizer st = new StringTokenizer(in.readLine());
-                if (st.hasMoreTokens()) {
-                    Champion c = new Champion(st.nextToken().replaceAll("_", " "), Integer.parseInt(st.nextToken()),
-                            Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()),
-                            Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Double.parseDouble(st.nextToken()));
-                    champions.add(c);
-                } else {
-                    break;
-                }
+                Champion c = new Champion(st.nextToken().replaceAll("_", " "), Integer.parseInt(st.nextToken()),
+                        Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()),
+                        Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Double.parseDouble(st.nextToken()));
+                champions.add(c);
             }
         } catch (Exception e) {
             System.err.println(e);
