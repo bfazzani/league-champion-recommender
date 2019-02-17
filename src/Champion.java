@@ -19,6 +19,7 @@ public class Champion {
     public String toString() {
         StringBuilder ret = new StringBuilder();
         ret.append(name);
+        ret.append(" ");
         for (int i=0;i<stats.length;i++) {
             ret.append(stats[i]);
             if (i != stats.length-1) {

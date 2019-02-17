@@ -2,6 +2,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class ChampionList {
 
@@ -22,15 +23,15 @@ public class ChampionList {
             for (Champion c : champions) {
                 sum += c.stats[i];
             }
-            means[i] = sum / 7.0;
+            means[i] = sum / champions.size();
         }
-
+        System.out.println(Arrays.toString(means));
         for (int i=0;i<7;i++) {
             double sum = 0;
             for (Champion c : champions) {
                 sum += Math.pow(means[i]-c.stats[i], 2);
             }
-            sum /= 6;
+            sum /= champions.size()-1;
             stdev[i] = Math.sqrt(sum);
         }
 
@@ -42,7 +43,6 @@ public class ChampionList {
             while (in.hasNext()) {
                 Champion c = new Champion(in.next().replaceAll("_", " "), in.nextInt(), in.nextDouble(), in.nextDouble(), in.nextDouble(),
                         in.nextInt(), in.nextInt(), in.nextDouble());
-                System.out.println(c);
                 champions.add(c);
             }
         } catch (Exception e) {
