@@ -37,7 +37,6 @@ public class ChampionList {
             }
             means[i] = sum / champions.size();
         }
-        System.out.println(Arrays.toString(means));
         for (int i=0;i<7;i++) {
             double sum = 0;
             for (Champion c : champions) {
