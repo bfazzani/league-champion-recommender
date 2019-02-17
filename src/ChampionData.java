@@ -1,13 +1,13 @@
-public class Champion {
+public class ChampionData {
 
     private String name;
     double[] stats; // gold, kills, deaths, assists, damageDealt, damageTaken, creepScore
 
-    public Champion(String name) {
+    public ChampionData(String name) {
         this.name = name;
     }
 
-    public Champion(String name, int gold, double kills, double deaths, double assists, int damageDealt, int damageTaken, double creepScore) {
+    public ChampionData(String name, int gold, double kills, double deaths, double assists, int damageDealt, int damageTaken, double creepScore) {
         this.name = name;
         stats = new double[7];
         stats[0] = gold;
@@ -19,7 +19,7 @@ public class Champion {
         stats[6] = creepScore;
     }
 
-    public double compareTo(Champion c, double[] stdev) {
+    public double compareTo(ChampionData c, double[] stdev) {
         double sum = 0;
         for (int i=0;i<stats.length;i++) {
             sum += Math.pow((stats[i]-c.stats[i]) / stdev[i], 2);
@@ -29,7 +29,7 @@ public class Champion {
 
     @Override
     public boolean equals(Object o) {
-        Champion c = (Champion) o;
+        ChampionData c = (ChampionData) o;
         return this.name.equals(c.name);
     }
 

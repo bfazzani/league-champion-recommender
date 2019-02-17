@@ -4,38 +4,43 @@ import java.util.*;
 public class ChampionList {
 
     private String fileName;
-    private List<Champion> champions;
+    private List<ChampionData> champions;
 
     public ChampionList(String fileName) {
         this.fileName = fileName;
         champions = new ArrayList<>();
     }
 
-    public Champion[] getMatches(String champion, int matchNum) {
-        TreeMap<Double, Champion> close = new TreeMap<>();
+    public ChampionData get(String champion) {
+        ChampionData c = new ChampionData(champion);
+        return champions.get(champions.indexOf(c));
+    }
+
+    public ChampionData[] getMatches(String champion, int matchNum) {
+        TreeMap<Double, ChampionData> close = new TreeMap<>();
         double[] stdev = standardDeviation();
 
-        Champion c = new Champion(champion);
+        ChampionData c = new ChampionData(champion);
         int index = champions.indexOf(c);
         if (index == -1)  {
-            System.err.println("Champion Not Found");
+            System.err.println("ChampionData Not Found");
             return null;
         }
 
-        Champion c1 = champions.get(index);
+        ChampionData c1 = champions.get(index);
         return getMatches(c1, matchNum);
     }
 
-    public Champion[] getMatches(Champion c1, int matchNum) {
-        TreeMap<Double, Champion> close = new TreeMap<>();
+    public ChampionData[] getMatches(ChampionData c1, int matchNum) {
+        TreeMap<Double, ChampionData> close = new TreeMap<>();
         double[] stdev = standardDeviation();
 
         for (int i=0;i<champions.size();i++) {
-            Champion c2 = champions.get(i);
+            ChampionData c2 = champions.get(i);
             close.put(c1.compareTo(c2, stdev), c2);
         }
 
-        Champion[] ret = new Champion[matchNum];
+        ChampionData[] ret = new ChampionData[matchNum];
         for (int i=0;i<ret.length;i++) {
             ret[i] = close.pollFirstEntry().getValue();
         }
@@ -50,8 +55,8 @@ public class ChampionList {
 
         for (int i=0;i<champions.size();i++) {
             for (int j=i+1;j<champions.size();j++) {
-                Champion c1 = champions.get(i);
-                Champion c2 = champions.get(j);
+                ChampionData c1 = champions.get(i);
+                ChampionData c2 = champions.get(j);
                 close.put(c1.compareTo(c2, stdev), new Pair(c1, c2));
             }
         }
@@ -65,14 +70,14 @@ public class ChampionList {
 
         for (int i=0;i<7;i++) {
             double sum = 0;
-            for (Champion c : champions) {
+            for (ChampionData c : champions) {
                 sum += c.stats[i];
             }
             means[i] = sum / champions.size();
         }
         for (int i=0;i<7;i++) {
             double sum = 0;
-            for (Champion c : champions) {
+            for (ChampionData c : champions) {
                 sum += Math.pow(means[i]-c.stats[i], 2);
             }
             sum /= champions.size()-1;
@@ -87,7 +92,7 @@ public class ChampionList {
             String line;
             while ((line = in.readLine()) != null) {
                 StringTokenizer st = new StringTokenizer(line);
-                Champion c = new Champion(st.nextToken().replaceAll("_", " "), Integer.parseInt(st.nextToken()),
+                ChampionData c = new ChampionData(st.nextToken().replaceAll("_", " "), Integer.parseInt(st.nextToken()),
                         Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()),
                         Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Double.parseDouble(st.nextToken()));
                 champions.add(c);
@@ -112,10 +117,10 @@ public class ChampionList {
 }
 
 class Pair {
-    Champion first;
-    Champion second;
+    ChampionData first;
+    ChampionData second;
 
-    public Pair(Champion first, Champion second) {
+    public Pair(ChampionData first, ChampionData second) {
         this.first = first;
         this.second = second;
     }

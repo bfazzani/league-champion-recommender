@@ -32,19 +32,6 @@ public class Main {
         Orianna.setRiotAPIKey("RGAPI-d8744ef4-37fa-4d60-8284-3c17649618fc");
         Orianna.setDefaultRegion(Region.NORTH_AMERICA);
 
-        Summoner summoner = Orianna.summonerNamed("DuyvuKnight11").get();
-        System.out.println(summoner.getName() + " is level " + summoner.getLevel() + " on the " + summoner.getRegion() + " server.");
-
-        final ChampionMasteries cms = summoner.getChampionMasteries();
-        //System.out.println(cms);
-        String[] champions = new String[5];
-        for(int i = 0; i < 5 ; i++){
-            champions[i] = cms.get(i).getChampion().getName();
-        }
-        for(String c : champions){
-            System.out.println(c);
-        }
-
         ChampionList cList = new ChampionList("champData.txt");
         cList.readData();
         System.out.println(Arrays.toString(cList.standardDeviation()));
@@ -52,14 +39,33 @@ public class Main {
         //new Main();
 
         cList.test();
-        queryChampion(cList);
+        querySummoner(cList);
     }
 
     public static void querySummoner(ChampionList list) {
         Scanner in = new Scanner(System.in);
 
         System.out.println("Enter summoner name: ");
-        String summoner = in.nextLine();
+        String summonerName = in.nextLine();
+
+        Summoner summoner = Orianna.summonerNamed(summonerName).get();
+        final ChampionMasteries cms = summoner.getChampionMasteries();
+        //System.out.println(cms);
+        String[] champions = new String[5];
+        int[] masteryScores = new int[5];
+        for(int i = 0; i < 5 ; i++){
+            champions[i] = cms.get(i).getChampion().getName();
+            masteryScores[i] = cms.get(i).getPoints();
+        }
+        for (int i=0;i<5;i++) {
+            System.out.println(champions[i] + ": " + masteryScores[i]);
+        }
+
+        double[] stats = new double[7];
+        for (int i=0;i<5;i++) {
+            ChampionData c = list.get(champions[i]);
+
+        }
     }
 
     public static void queryChampion(ChampionList list) {
