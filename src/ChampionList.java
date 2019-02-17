@@ -11,7 +11,34 @@ public class ChampionList {
         champions = new ArrayList<>();
     }
 
+    public Champion[] getMatches(String champion, int matchNum) {
+        TreeMap<Double, Champion> close = new TreeMap<>();
+        double[] stdev = standardDeviation();
+
+        Champion c = new Champion(champion);
+        int index = champions.indexOf(c);
+        if (index == -1)  {
+            System.err.println("Champion Not Found");
+            return null;
+        }
+
+        Champion c1 = champions.get(index);
+        for (int i=0;i<champions.size();i++) {
+            if (i == index) continue;
+            Champion c2 = champions.get(i);
+            close.put(c1.compareTo(c2, stdev), c2);
+        }
+
+        Champion[] ret = new Champion[matchNum];
+        for (int i=0;i<ret.length;i++) {
+            ret[i] = close.pollFirstEntry().getValue();
+        }
+
+        return ret;
+    }
+
     public void test() {
+        //take reciprocal, divide 2.5, minus 0.04
         TreeMap<Double, Pair> close = new TreeMap<>();
         double[] stdev = standardDeviation();
 
@@ -53,7 +80,7 @@ public class ChampionList {
         try (BufferedReader in = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = in.readLine()) != null) {
-                StringTokenizer st = new StringTokenizer(in.readLine());
+                StringTokenizer st = new StringTokenizer(line);
                 Champion c = new Champion(st.nextToken().replaceAll("_", " "), Integer.parseInt(st.nextToken()),
                         Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()),
                         Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Double.parseDouble(st.nextToken()));
@@ -62,6 +89,7 @@ public class ChampionList {
         } catch (Exception e) {
             System.err.println(e);
         }
+        System.out.println(champions.size());
     }
 
     @Override
