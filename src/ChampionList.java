@@ -13,6 +13,30 @@ public class ChampionList {
         champions = new ArrayList<>();
     }
 
+    public double[] standardDeviation() {
+        double[] stdev = new double[7];
+        double[] means = new double[7];
+
+        for (int i=0;i<7;i++) {
+            double sum = 0;
+            for (Champion c : champions) {
+                sum += c.stats[i];
+            }
+            means[i] = sum / 7.0;
+        }
+
+        for (int i=0;i<7;i++) {
+            double sum = 0;
+            for (Champion c : champions) {
+                sum += Math.pow(means[i]-c.stats[i], 2);
+            }
+            sum /= 6;
+            stdev[i] = Math.sqrt(sum);
+        }
+
+        return stdev;
+    }
+
     public void readData() {
         try (Scanner in = new Scanner(new File(fileName))) {
             while (in.hasNext()) {

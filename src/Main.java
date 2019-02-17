@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 public class Main {
     public Main()
@@ -15,9 +16,9 @@ public class Main {
     {
         ChampionList cList = new ChampionList("champData.txt");
         cList.readData();
+        System.out.println(Arrays.toString(cList.standardDeviation()));
         System.out.println(cList);
         //new Main();
-
 
     }
 }
