@@ -16,7 +16,8 @@ public class Main {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         frame.add(panel);
-        panel.add(new PanelPlayer());
+        panel.add(new JScrollPane(new PanelPlayer()));
+        panel.add(new JScrollPane(new PanelRec()));
     }
     public static void main(String[] args)
     {
