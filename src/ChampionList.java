@@ -1,8 +1,5 @@
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Arrays;
+import java.util.*;
 
 public class ChampionList {
 
@@ -12,6 +9,21 @@ public class ChampionList {
     public ChampionList(String fileName) {
         this.fileName = fileName;
         champions = new ArrayList<>();
+    }
+
+    public void test() {
+        TreeMap<Double, Pair> close = new TreeMap<>();
+        double[] stdev = standardDeviation();
+
+        for (int i=0;i<champions.size();i++) {
+            for (int j=i+1;j<champions.size();j++) {
+                Champion c1 = champions.get(i);
+                Champion c2 = champions.get(j);
+                close.put(c1.compareTo(c2, stdev), new Pair(c1, c2));
+            }
+        }
+
+        System.out.println(close);
     }
 
     public double[] standardDeviation() {
@@ -60,5 +72,20 @@ public class ChampionList {
             }
         }
         return ret.toString();
+    }
+}
+
+class Pair {
+    Champion first;
+    Champion second;
+
+    public Pair(Champion first, Champion second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    @Override
+    public String toString() {
+        return first + ", " + second;
     }
 }
