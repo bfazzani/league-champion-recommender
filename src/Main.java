@@ -45,7 +45,7 @@ public class Main {
     public static void querySummoner(ChampionList list) {
         Scanner in = new Scanner(System.in);
 
-        System.out.println("Enter summoner name: ");
+        System.out.print("Enter summoner name: ");
         String summonerName = in.nextLine();
 
         Summoner summoner = Orianna.summonerNamed(summonerName).get();
@@ -64,8 +64,17 @@ public class Main {
         double[] stats = new double[7];
         for (int i=0;i<5;i++) {
             ChampionData c = list.get(champions[i]);
-
+            for (int j=0;j<stats.length;j++) {
+                stats[j] += c.stats[j];
+            }
         }
+        for (int i=0;i<stats.length;i++) {
+            stats[i] /= 5.0;
+        }
+
+        ChampionData user = new ChampionData(summonerName, stats);
+        ChampionData[] suggestions = list.getMatches(user, 5);
+        System.out.println(Arrays.toString(suggestions));
     }
 
     public static void queryChampion(ChampionList list) {
