@@ -11,6 +11,10 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setVisible(true);
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        frame.add(panel);
+        panel.add(new PanelPlayer());
     }
     public static void main(String[] args)
     {
@@ -18,7 +22,7 @@ public class Main {
         cList.readData();
         System.out.println(Arrays.toString(cList.standardDeviation()));
         System.out.println(cList);
-        //new Main();
+        new Main();
 
     }
 }
