@@ -1,6 +1,6 @@
 public class ChampionData {
 
-    private String name;
+    String name;
     double[] stats; // gold, kills, deaths, assists, damageDealt, damageTaken, creepScore
 
     public ChampionData(String name) {
@@ -8,6 +8,7 @@ public class ChampionData {
     }
 
     public ChampionData(String name, double[] stats) {
+        this.name = name;
         this.stats = stats.clone();
     }
 

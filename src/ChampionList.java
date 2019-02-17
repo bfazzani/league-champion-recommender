@@ -37,6 +37,7 @@ public class ChampionList {
 
         for (int i=0;i<champions.size();i++) {
             ChampionData c2 = champions.get(i);
+            if (c1.equals(c2)) continue;
             close.put(c1.compareTo(c2, stdev), c2);
         }
 
@@ -100,7 +101,7 @@ public class ChampionList {
         } catch (Exception e) {
             System.err.println(e);
         }
-        System.out.println(champions.size());
+        //System.out.println(champions.size());
     }
 
     @Override
