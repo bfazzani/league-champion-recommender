@@ -1,4 +1,4 @@
-import java.io.File;
+import java.io.*;
 import java.util.*;
 
 public class ChampionList {
@@ -50,10 +50,13 @@ public class ChampionList {
     }
 
     public void readData() {
-        try (Scanner in = new Scanner(new File(fileName))) {
-            while (in.hasNext()) {
-                Champion c = new Champion(in.next().replaceAll("_", " "), in.nextInt(), in.nextDouble(), in.nextDouble(), in.nextDouble(),
-                        in.nextInt(), in.nextInt(), in.nextDouble());
+        try (BufferedReader in = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = in.readLine()) != null) {
+                StringTokenizer st = new StringTokenizer(in.readLine());
+                Champion c = new Champion(st.nextToken().replaceAll("_", " "), Integer.parseInt(st.nextToken()),
+                        Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()),
+                        Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Double.parseDouble(st.nextToken()));
                 champions.add(c);
             }
         } catch (Exception e) {

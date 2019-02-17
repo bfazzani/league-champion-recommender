@@ -25,7 +25,7 @@ public class Main {
         cList.readData();
         System.out.println(Arrays.toString(cList.standardDeviation()));
         System.out.println(cList);
-        new Main();
+        //new Main();
 
         cList.test();
     }
