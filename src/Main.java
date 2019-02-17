@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.TreeMap;
 
 public class Main {
     public Main()
@@ -24,5 +26,6 @@ public class Main {
         System.out.println(cList);
         new Main();
 
+        cList.test();
     }
 }
