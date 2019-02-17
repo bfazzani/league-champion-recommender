@@ -23,8 +23,14 @@ public class ChampionList {
         }
 
         Champion c1 = champions.get(index);
+        return getMatches(c1, matchNum);
+    }
+
+    public Champion[] getMatches(Champion c1, int matchNum) {
+        TreeMap<Double, Champion> close = new TreeMap<>();
+        double[] stdev = standardDeviation();
+
         for (int i=0;i<champions.size();i++) {
-            if (i == index) continue;
             Champion c2 = champions.get(i);
             close.put(c1.compareTo(c2, stdev), c2);
         }

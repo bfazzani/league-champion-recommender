@@ -1,14 +1,5 @@
-import com.merakianalytics.orianna.Orianna;
-import com.merakianalytics.orianna.types.common.Queue;
-import com.merakianalytics.orianna.types.common.Region;
-import com.merakianalytics.orianna.types.core.league.League;
-import com.merakianalytics.orianna.types.core.staticdata.Champion;
-import com.merakianalytics.orianna.types.core.staticdata.Champions;
-import com.merakianalytics.orianna.types.core.summoner.Summoner;
-
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -50,10 +41,17 @@ public class Main {
         //new Main();
 
         cList.test();
-        query(cList);
+        queryChampion(cList);
     }
 
-    public static void query(ChampionList list) {
+    public static void querySummoner(ChampionList list) {
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("Enter summoner name: ");
+        String summoner = in.nextLine();
+    }
+
+    public static void queryChampion(ChampionList list) {
         Scanner in = new Scanner(System.in);
 
         System.out.print("Enter champion name: ");
