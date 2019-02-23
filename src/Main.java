@@ -29,7 +29,7 @@ public class Main {
     }
     public static void main(String[] args)
     {
-        Orianna.setRiotAPIKey("RGAPI-d8744ef4-37fa-4d60-8284-3c17649618fc");
+        Orianna.setRiotAPIKey("RGAPI-b9ebadd7-d059-4afd-af07-d4a630bfec22");
         Orianna.setDefaultRegion(Region.NORTH_AMERICA);
 
         ChampionList cList = new ChampionList("champData.txt");
